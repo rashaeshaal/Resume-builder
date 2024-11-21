@@ -32,7 +32,7 @@ export class ResumeFormComponent {
         state: ['', Validators.required],
         pincode: ['', [Validators.required, this.pincodeValidator]],
       }),
-      experiences: this.fb.array([]) // Experience as a FormArray
+      experiences: this.fb.array([]) 
     });
 
 }
@@ -66,13 +66,13 @@ deleteExperience(index: number): void {
 onSubmit(): void {
   if (this.resumeForm.valid) {
     console.log('Form Data:', this.resumeForm.value);
-    this.isSubmitted = true; // Show the confirmation message
-    this.resetForm(); // Reset the form after submission
+    this.isSubmitted = true; 
+    this.resetForm(); 
   }
 }
 resetForm(): void {
   this.resumeForm.reset();
-  this.experiences.clear(); // Clear experiences
+  this.experiences.clear(); 
 }
 populateForm(): void {
   this.resumeForm.patchValue({
