@@ -2,7 +2,6 @@
     <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
       <h2>Resume Builder</h2>
   
-      <!-- Personal Details -->
       <div>
         <label>First Name:</label>
         <input type="text" formControlName="firstName" />
@@ -29,7 +28,6 @@
         </small>
       </div>
   
-      <!-- Gender -->
       <div>
         <label>Gender:</label>
         <label><input type="radio" formControlName="gender" value="Male" /> Male</label>
@@ -37,7 +35,7 @@
         <label><input type="radio" formControlName="gender" value="Other" /> Other</label>
       </div>
   
-      <!-- Languages -->
+  
       <div>
         <label>Languages Spoken:</label>
         <label><input type="checkbox" formControlName="english" /> English</label>
@@ -47,7 +45,6 @@
         <label><input type="checkbox" formControlName="others" /> Others</label>
       </div>
   
-      <!-- Address -->
       <div formGroupName="address">
         <h3>Address</h3>
         <label>House No:</label>
@@ -65,7 +62,7 @@
         </small>
       </div>
   
-      <!-- Experiences -->
+ 
       <h3>Experience</h3>
       <button type="button" (click)="addExperience()">Add Experience</button>
       <div formArrayName="experiences">
@@ -84,7 +81,6 @@
         </div>
       </div>
   
-      <!-- Actions -->
       <button type="submit" [disabled]="resumeForm.invalid">Submit</button>
       <button type="button" (click)="resetForm()">Reset</button>
     </form>
