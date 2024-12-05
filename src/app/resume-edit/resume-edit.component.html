@@ -1,0 +1,73 @@
+<form [formGroup]="resumeForm" *ngIf="!isLoading && !error" (ngSubmit)="submitResume()">
+    <div>
+      <label>First Name</label>
+      <input formControlName="first_name" type="text" />
+    </div>
+  
+    <div>
+      <label>Last Name</label>
+      <input formControlName="last_name" type="text" />
+    </div>
+  
+    <div>
+      <label>Email</label>
+      <input formControlName="email" type="email" />
+    </div>
+  
+    <div>
+      <label>Gender</label>
+      <select formControlName="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+  
+    <div>
+      <label>Address</label>
+      <textarea formControlName="address"></textarea>
+    </div>
+  
+    <div class="languages">
+      <label *ngFor="let language of languages">
+        <input
+          type="checkbox"
+          [checked]="isLanguageSelected(language.id)"
+          (change)="toggleLanguage(language.id)"
+        />
+        {{ language.name }}
+      </label>
+    </div>
+  
+    <div formArrayName="experiences">
+      <div *ngFor="let experience of experiences.controls; let i = index" [formGroupName]="i">
+        <div>
+          <label>Company Name</label>
+          <input formControlName="company_name" type="text" />
+        </div>
+  
+        <div>
+          <label>Position</label>
+          <input formControlName="position" type="text" />
+        </div>
+  
+        <div>
+          <label>Start Date</label>
+          <input formControlName="start_date" type="date" />
+        </div>
+  
+        <div>
+          <label>End Date</label>
+          <input formControlName="end_date" type="date" />
+        </div>
+  
+        <button type="button" (click)="removeExperience(i)">Remove Experience</button>
+      </div>
+    </div>
+  
+    <button type="button" (click)="addExperience()">Add Experience</button>
+  
+    <button type="submit" [disabled]="resumeForm.invalid">Submit</button>
+  </form>
+  

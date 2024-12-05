@@ -1,0 +1,36 @@
+<button (click)="goBack()" class="back-button">Back</button>
+<div *ngIf="isLoading" class="loading-message">Loading resume details...</div>
+
+<div *ngIf="error" class="error-message">{{ error }}</div>
+
+<div *ngIf="!isLoading && resume">
+  <div class="resume-header">
+    <h2>{{ resume.first_name }} {{ resume.last_name }} </h2>
+  </div>
+
+  <div class="resume-info">
+    <div class="info-row">
+      <strong>Email:</strong> <span>{{ resume.email }}</span>
+    </div>
+    <div class="info-row">
+      <strong>Gender:</strong> <span>{{ resume.gender }}</span>
+    </div>
+    <div class="info-row">
+      <strong>Address:</strong> <span>{{ resume.address }}</span>
+    </div>
+    <div class="info-row">
+      <strong>Languages:</strong> 
+      <span *ngFor="let lang of resume.languages">{{ lang }} </span>
+    </div>
+
+    <div class="experiences">
+      <h3>Experience</h3>
+      <div *ngFor="let experience of resume.experiences" class="experience">
+        <div><strong>Company:</strong> {{ experience.company_name }}</div>
+        <div><strong>Position:</strong> {{ experience.position }}</div>
+        <div><strong>Start Date:</strong> {{ experience.start_date | date }}</div>
+        <div><strong>End Date:</strong> {{ experience.end_date | date }}</div>
+      </div>
+    </div>
+  </div>
+</div>

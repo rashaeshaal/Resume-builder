@@ -1,0 +1,37 @@
+
+<div *ngIf="isLoading">Loading resumes...</div>
+
+<div *ngIf="error" class="error-message">{{ error }}</div>
+<div class="mb-4">
+  <button
+    class="bg-green-500 text-white font-bold py-2 px-4 rounded"
+    (click)="onAddNewPost()"
+  >
+    Add New Post
+  </button>
+</div>
+
+<table *ngIf="!isLoading && resumes.length > 0" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let resume of resumes">
+      <td>{{ resume.first_name }} {{ resume.last_name }}</td>
+      <td>{{ resume.email }}</td>
+      <td>{{ resume.address }}</td>
+      <td>
+        <button (click)="viewResume(resume.id)">View Details</button>
+        <button (click)="editResume(resume.id)">Edit</button>
+        <button (click)="deleteResume(resume.id)" class="delete-button">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!isLoading && resumes.length === 0">No resumes found.</div>

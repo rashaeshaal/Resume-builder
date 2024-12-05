@@ -1,0 +1,99 @@
+<form [formGroup]="resumeForm" (ngSubmit)="submitResume()">
+  <div>
+    <label for="first_name">First Name</label>
+    <input id="first_name" formControlName="first_name" type="text" />
+    <div *ngIf="resumeForm.get('first_name')?.invalid && resumeForm.get('first_name')?.touched">
+      <span *ngIf="resumeForm.get('first_name')?.hasError('required')">First name is required.</span>
+      <span *ngIf="resumeForm.get('first_name')?.hasError('minlength')">First name must be at least 3 characters long.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="last_name">Last Name</label>
+    <input id="last_name" formControlName="last_name" type="text" />
+    <div *ngIf="resumeForm.get('last_name')?.invalid && resumeForm.get('last_name')?.touched">
+      <span *ngIf="resumeForm.get('last_name')?.hasError('required')">Last name is required.</span>
+      <span *ngIf="resumeForm.get('last_name')?.hasError('minlength')">Last name must be at least 3 characters long.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="resumeForm.get('email')?.invalid && resumeForm.get('email')?.touched">
+      <span *ngIf="resumeForm.get('email')?.hasError('required')">Email is required.</span>
+      <span *ngIf="resumeForm.get('email')?.hasError('email')">Please enter a valid email address.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="gender">Gender</label>
+    <select id="gender" formControlName="gender">
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <div *ngIf="resumeForm.get('gender')?.invalid && resumeForm.get('gender')?.touched">
+      <span *ngIf="resumeForm.get('gender')?.hasError('required')">Gender is required.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="address">Address</label>
+    <textarea id="address" formControlName="address"></textarea>
+    <div *ngIf="resumeForm.get('address')?.invalid && resumeForm.get('address')?.touched">
+      <span *ngIf="resumeForm.get('address')?.hasError('required')">Address is required.</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Languages</label>
+    <div *ngFor="let lang of languages">
+      <input
+        type="checkbox"
+        [value]="lang.id"
+        (change)="toggleLanguage(lang.id)"
+        [checked]="resumeForm.get('languages')?.value.includes(lang.id)"
+      />
+      {{ lang.name }}
+    </div>
+    <div *ngIf="resumeForm.get('languages')?.invalid && resumeForm.get('languages')?.touched">
+      <span *ngIf="resumeForm.get('languages')?.hasError('required')">At least one language must be selected.</span>
+    </div>
+  </div>
+
+  <div formArrayName="experiences">
+    <div *ngFor="let experience of experiences.controls; let i = index" [formGroupName]="i">
+      <label for="company_name">Company Name</label>
+      <input formControlName="company_name" type="text" />
+      <div *ngIf="experience.get('company_name')?.invalid && experience.get('company_name')?.touched">
+        <span *ngIf="experience.get('company_name')?.hasError('required')">Company name is required.</span>
+      </div>
+
+      <label for="position">Position</label>
+      <input formControlName="position" type="text" />
+      <div *ngIf="experience.get('position')?.invalid && experience.get('position')?.touched">
+        <span *ngIf="experience.get('position')?.hasError('required')">Position is required.</span>
+      </div>
+
+      <label for="start_date">Start Date</label>
+      <input formControlName="start_date" type="date" />
+      <div *ngIf="experience.get('start_date')?.invalid && experience.get('start_date')?.touched">
+        <span *ngIf="experience.get('start_date')?.hasError('required')">Start date is required.</span>
+      </div>
+
+      <label for="end_date">End Date</label>
+      <input formControlName="end_date" type="date" />
+      <div *ngIf="experience.get('end_date')?.invalid && experience.get('end_date')?.touched">
+        <span *ngIf="experience.get('end_date')?.hasError('required')">End date is required.</span>
+      </div>
+
+      <button type="button" (click)="removeExperience(i)">Remove Experience</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addExperience()">Add Experience</button>
+
+  <button type="submit" [disabled]="!resumeForm.valid">Submit</button>
+</form>

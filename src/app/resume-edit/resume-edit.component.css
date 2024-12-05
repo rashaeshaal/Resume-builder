@@ -1,0 +1,109 @@
+/* Styles for the form container */
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Label styling */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  /* Input fields styling */
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  /* Languages section */
+  div > label {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Add and Remove buttons styling */
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Remove button specific styling */
+  button[type="button"] {
+    background-color: #dc3545;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #b02a37;
+  }
+  
+  /* Submit button styling */
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Divider for experiences */
+  div[formArrayName="experiences"] {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+  }
+  
+  /* Loading and error message styles */
+  div[ngIf="isLoading"] {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+  
+  div[ngIf="!isLoading && error"] {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+  }
+  
